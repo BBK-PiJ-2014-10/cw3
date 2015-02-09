@@ -1,7 +1,5 @@
 public class ReturnObjectImpl implements ReturnObject {
     private Object obj;
-    private boolean hasError = false;
-    private ErrorMessage errorMessage;
     private int index;
 
     public ReturnObjectImpl (Object obj) {
@@ -16,19 +14,18 @@ public class ReturnObjectImpl implements ReturnObject {
         return this.index = index;
     }
 
-    public void setError (boolean hasError) {
-        this.hasError = hasError;
-    }
-
-    public void setErrorMessage (ErrorMessage errorMessage) {
-        this.errorMessage = errorMessage;
-    }
     /**
      * Returns whether there has been an error
      * @return whether there has been an error
      */
     public boolean hasError() {
-        return this.hasError;
+        if (this.obj instanceof ErrorMessage) {
+            if (this.obj != ErrorMessage.NO_ERROR) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -40,11 +37,16 @@ public class ReturnObjectImpl implements ReturnObject {
      * @return the error message
      */
     public ErrorMessage getError() {
+
         if (this.hasError()) {
-            return this.errorMessage;
-        } else {
-            return ErrorMessage.NO_ERROR;
+            for (ErrorMessage error : ErrorMessage.values()) {
+                if (this.obj == error) {
+                    return error;
+                }
+            }
         }
+
+        return ErrorMessage.NO_ERROR;
     }
 
     /**
@@ -61,7 +63,7 @@ public class ReturnObjectImpl implements ReturnObject {
      *         error
      */
     public Object getReturnValue() {
-        if (hasError()) {
+        if (this.hasError()) {
             return null;
         } else {
             return this.obj;

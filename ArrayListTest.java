@@ -7,4 +7,9 @@ public class ArrayListTest {
         ArrayList al = new ArrayList();
         assertEquals(0, al.size());
     }
+    @Test
+    public void testsIsEmpty() {
+        ArrayList al = new ArrayList();
+        assertEquals(true, al.isEmpty());
+    }
 }

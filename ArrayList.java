@@ -33,7 +33,7 @@ public class ArrayList implements List {
         ReturnObjectImpl returnObj;
 
         if ((index < 0) || (index >= array.length)) {
-            returnObj = new ReturnObjectImpl(-1);
+            returnObj = new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
         } else {
             returnObj = array[index];
         }
@@ -55,7 +55,7 @@ public class ArrayList implements List {
         ReturnObjectImpl returnObj;
 
         if (index < 0 || index >= array.length) {
-            returnObj = new ReturnObjectImpl(-1);
+            returnObj = new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
         } else {
             returnObj = array[index];
             for (int i = index + 1; i < array.length; i++) {
