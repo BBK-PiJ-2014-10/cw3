@@ -1,13 +1,13 @@
 public class ArrayList implements List {
-    private boolean isEmpty = false;
-    private int size = 0;
+    private ReturnObjectImpl[ ] array = new ReturnObjectImpl[0];
     /**
      * Returns true if the list is empty, false otherwise.
      *
      * @return true if the list is empty, false otherwise.
      */
+
     public boolean isEmpty() {
-        return this.isEmpty;
+        return (array.length == 0);
     }
 
     /**
@@ -16,7 +16,7 @@ public class ArrayList implements List {
      * @return the number of items currently in the list
      */
     public int size() {
-        return this.size;
+        return array.length;
     }
 
     /**
@@ -29,8 +29,16 @@ public class ArrayList implements List {
      * @return the element or an appropriate error message,
      *         encapsulated in a ReturnObject
      */
-    public ReturnObject get(int index);
+    public ReturnObjectImpl get(int index) {
+        ReturnObjectImpl returnObj;
 
+        if ((index < 0) || (index >= array.length)) {
+            returnObj = new ReturnObjectImpl(-1);
+        } else {
+            returnObj = array[index];
+        }
+        return returnObj;
+    }
     /**
      * Returns the elements at the given position and removes it
      * from the list. The indeces of elements after the removed
@@ -43,7 +51,20 @@ public class ArrayList implements List {
      * @return the element or an appropriate error message,
      *         encapsulated in a ReturnObject
      */
-    public ReturnObject remove(int index);
+    public ReturnObjectImpl remove(int index) {
+        ReturnObjectImpl returnObj;
+
+        if (index < 0 || index >= array.length) {
+            returnObj = new ReturnObjectImpl(-1);
+        } else {
+            returnObj = array[index];
+            for (int i = index + 1; i < array.length; i++) {
+                ReturnObjectImpl currentObject = array[i];
+                currentObject.setIndex(i - 1);
+            }
+        }
+        return returnObj;
+    }
 
     /**
      * Adds an element to the list, inserting it at the given
@@ -63,7 +84,11 @@ public class ArrayList implements List {
      * @return an ReturnObject, empty if the operation is successful
      *         the item added or containing an appropriate error message
      */
-    public ReturnObject add(int index, Object item);
+    public ReturnObjectImpl add(int index, Object item) {
+        ReturnObjectImpl returnObj;
+        returnObj = new ReturnObjectImpl(-1);
+        return returnObj;
+    }
 
     /**
      * Adds an element at the end of the list.
@@ -76,6 +101,10 @@ public class ArrayList implements List {
      * @return an ReturnObject, empty if the operation is successful
      *         the item added or containing an appropriate error message
      */
-    public ReturnObject add(Object item);
+    public ReturnObjectImpl add(Object item) {
+        ReturnObjectImpl returnObj;
+        returnObj = new ReturnObjectImpl(-1);
+        return returnObj;
+    }
 }
 
