@@ -1,17 +1,26 @@
 public class ReturnObjectImpl implements ReturnObject {
     private Object obj;
     private boolean hasError = false;
-    private String errorMessage;
+    private ErrorMessage errorMessage;
+    private int index;
 
     public ReturnObjectImpl (Object obj) {
         this.obj = obj;
+    }
+
+    public int getIndex() {
+        return this.index;
+    }
+
+    public int setIndex(int index) {
+        return this.index = index;
     }
 
     public void setError (boolean hasError) {
         this.hasError = hasError;
     }
 
-    public void setErrorMessage (String errorMessage) {
+    public void setErrorMessage (ErrorMessage errorMessage) {
         this.errorMessage = errorMessage;
     }
     /**
@@ -31,10 +40,10 @@ public class ReturnObjectImpl implements ReturnObject {
      * @return the error message
      */
     public ErrorMessage getError() {
-        if hasError() {
+        if (this.hasError()) {
             return this.errorMessage;
         } else {
-            return "NO_ERROR";
+            return ErrorMessage.NO_ERROR;
         }
     }
 
