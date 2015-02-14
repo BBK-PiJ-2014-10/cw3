@@ -6,14 +6,6 @@ public class ReturnObjectImpl implements ReturnObject {
         this.obj = obj;
     }
 
-    public int getIndex() {
-        return this.index;
-    }
-
-    public int setIndex(int index) {
-        return this.index = index;
-    }
-
     /**
      * Returns whether there has been an error
      * @return whether there has been an error
