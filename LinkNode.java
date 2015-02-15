@@ -1,10 +1,12 @@
 public class LinkNode {
     private ReturnObjectImpl data;
-    private LinkNode pointer = null;
+    private LinkNode next = null;
+    private LinkNode previous = null;
 
-    public LinkNode(ReturnObjectImpl dataToSet, LinkNode pointerToSet, int indexToSet) {
+    public LinkNode(ReturnObjectImpl dataToSet, LinkNode nextToSet, LinkNode previousToSet) {
         data = dataToSet;
-        pointer = pointerToSet;
+        next = nextToSet;
+        previous = previousToSet;
     }
 
     public void setData(ReturnObjectImpl dataToSet){
@@ -15,12 +17,20 @@ public class LinkNode {
         return data;
     }
 
-    public void setPointer(LinkNode pointerToSet) {
-        pointer = pointerToSet;
+    public void setNext(LinkNode nextToSet) {
+        next = nextToSet;
     }
 
-    public LinkNode getPointer() {
-        return pointer;
+    public LinkNode getNext() {
+        return next;
+    }
+
+    public void setPrevious(LinkNode previousToSet) {
+        previous = previousToSet;
+    }
+
+    public LinkNode getPrevious() {
+        return previous;
     }
 
 }
