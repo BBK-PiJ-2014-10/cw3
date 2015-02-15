@@ -94,7 +94,7 @@ public class ArrayList implements List {
     public ReturnObjectImpl add(int index, Object item) {
         ReturnObjectImpl returnObj;
 
-        if ((index < 0) || (index >= (array.length + 1))) {
+        if ((index < 0) || (index >= array.length)) {
             returnObj = new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
         } else if (item == null) {
             returnObj = new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
