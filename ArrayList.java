@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class ArrayList implements List {
-    private ReturnObjectImpl[] array = new ReturnObjectImpl[0];
+    public ReturnObjectImpl[] array = new ReturnObjectImpl[0];
 
     /**
      * Returns true if the list is empty, false otherwise.
