@@ -73,24 +73,30 @@ public class LinkedList implements List {
             returnObj = new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
         } else {
             returnObj = get(index);
-            if (index == 0) {
-                returnObj = head.getData();
-                head = head.getNext();
-                head.setPrevious(null);
-            } else if (index == (size - 1)) {
-                returnObj = tail.getData();
-                tail = tail.getPrevious();
-                tail.setNext(null);
+
+            if (size == 1) {
+                head = null;
+                tail = null;
             } else {
-                LinkNode node = head;
-                for (int i = 0; i < index; i++)
-                    node = node.getNext();
+                if (index == 0) {
+                    returnObj = head.getData();
+                    head = head.getNext();
+                    head.setPrevious(null);
+                } else if (index == (size - 1)) {
+                    returnObj = tail.getData();
+                    tail = tail.getPrevious();
+                    tail.setNext(null);
+                } else {
+                    LinkNode node = head;
+                    for (int i = 0; i < index; i++)
+                        node = node.getNext();
 
-                LinkNode nextNode = node.getNext();
-                LinkNode previousNode = node.getPrevious();
+                    LinkNode nextNode = node.getNext();
+                    LinkNode previousNode = node.getPrevious();
 
-                nextNode.setPrevious(previousNode);
-                previousNode.setNext(nextNode);
+                    nextNode.setPrevious(previousNode);
+                    previousNode.setNext(nextNode);
+                }
             }
         }
         size--;
@@ -118,7 +124,7 @@ public class LinkedList implements List {
     public ReturnObject add(int index, Object item) {
         ReturnObjectImpl returnObj;
 
-        if ((index < 0) || (index >= size)) {
+        if ((index < 0) || (index > size)) {
             returnObj = new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
         } else if (item == null) {
             returnObj = new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
@@ -126,24 +132,33 @@ public class LinkedList implements List {
             // As per http://moodle.bbk.ac.uk/mod/forumng/discuss.php?d=289
             returnObj = new ReturnObjectImpl(null);
             ReturnObjectImpl dataToSet = new ReturnObjectImpl(item);
-            if (index == 0) {
-                LinkNode oldHead = head;
-                head = new LinkNode(dataToSet, oldHead, null);
-                oldHead.setPrevious(head);
-            } else if (index == (size - 1)) {
+            if (isEmpty()) {
+                head = new LinkNode(dataToSet, null, null);
+                tail = head;
+            } else if (index == size) {
                 LinkNode oldTail = tail;
                 tail = new LinkNode(dataToSet, null, oldTail);
                 oldTail.setNext(tail);
             } else {
-                LinkNode oldNode = head;
-                for (int i = 0; i < index; i++)
-                    oldNode = oldNode.getNext();
+                if (index == 0) {
+                    LinkNode oldHead = head;
+                    head = new LinkNode(dataToSet, oldHead, null);
+                    oldHead.setPrevious(head);
+                } else if (index == (size - 1)) {
+                    LinkNode oldTail = tail;
+                    tail = new LinkNode(dataToSet, null, oldTail);
+                    oldTail.setNext(tail);
+                } else {
+                    LinkNode oldNode = head;
+                    for (int i = 0; i < index; i++)
+                        oldNode = oldNode.getNext();
 
-                LinkNode previousNode = oldNode.getPrevious();
-                LinkNode newNode = new LinkNode(dataToSet, oldNode, previousNode);
+                    LinkNode previousNode = oldNode.getPrevious();
+                    LinkNode newNode = new LinkNode(dataToSet, oldNode, previousNode);
 
-                previousNode.setNext(newNode);
-                oldNode.setPrevious(newNode);
+                    previousNode.setNext(newNode);
+                    oldNode.setPrevious(newNode);
+                }
             }
         }
         size++;
@@ -171,10 +186,14 @@ public class LinkedList implements List {
             returnObj = new ReturnObjectImpl(null);
             ReturnObjectImpl dataToSet = new ReturnObjectImpl(item);
 
-            LinkNode oldTail = tail;
-            tail = new LinkNode(dataToSet, null, oldTail);
-            oldTail.setNext(tail);
-
+            if (isEmpty()) {
+                head = new LinkNode(dataToSet, null, null);
+                tail = head;
+            } else {
+                LinkNode oldTail = tail;
+                tail = new LinkNode(dataToSet, null, oldTail);
+                oldTail.setNext(tail);
+            }
         }
         size++;
         return returnObj;
