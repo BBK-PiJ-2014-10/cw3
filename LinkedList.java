@@ -17,6 +17,7 @@ public class LinkedList implements List {
     @Override
     public ReturnObjectImpl get(int index) {
         ReturnObjectImpl returnObj;
+
         if (isEmpty()) {
             returnObj = new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
         } else if ((index < 0) || (index >= size)) {
@@ -86,6 +87,7 @@ public class LinkedList implements List {
             // As per http://moodle.bbk.ac.uk/mod/forumng/discuss.php?d=289
             returnObj = new ReturnObjectImpl(null);
             ReturnObjectImpl dataToSet = new ReturnObjectImpl(item);
+
             if (isEmpty()) {
                 head = new LinkNode(dataToSet, null, null);
                 tail = head;

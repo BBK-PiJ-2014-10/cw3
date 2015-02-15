@@ -1,4 +1,4 @@
-public class FunctionalArrayList extends ArrayList implements FunctionalList{
+public class FunctionalArrayList extends ArrayList implements FunctionalList {
 
     @Override
     public ReturnObjectImpl head() {

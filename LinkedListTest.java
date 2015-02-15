@@ -1,6 +1,7 @@
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class LinkedListTest {
 
@@ -55,19 +56,19 @@ public class LinkedListTest {
 
         ll.add(1);
         ll.add(1);
-        assertEquals(2,ll.size());
+        assertEquals(2, ll.size());
 
         ReturnObject result = ll.remove(0);
         assertTrue(!result.hasError());
         assertEquals(ErrorMessage.NO_ERROR, result.getError());
         assertEquals(1, result.getReturnValue());
-        assertEquals(1,ll.size());
+        assertEquals(1, ll.size());
 
         result = ll.remove(0);
         assertTrue(!result.hasError());
         assertEquals(ErrorMessage.NO_ERROR, result.getError());
         assertEquals(1, result.getReturnValue());
-        assertEquals(0,ll.size());
+        assertEquals(0, ll.size());
 
         result = ll.remove(2);
         assertTrue(result.hasError());
@@ -81,12 +82,12 @@ public class LinkedListTest {
         ReturnObject result = ll.add(1);
         assertTrue(!result.hasError());
         assertEquals(ErrorMessage.NO_ERROR, result.getError());
-        assertEquals(1,ll.size());
+        assertEquals(1, ll.size());
         // As per http://moodle.bbk.ac.uk/mod/forumng/discuss.php?d=289
         assertEquals(null, result.getReturnValue());
 
         ll.add(1);
-        assertEquals(2,ll.size());
+        assertEquals(2, ll.size());
     }
 
     @Test

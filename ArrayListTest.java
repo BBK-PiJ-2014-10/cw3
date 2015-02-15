@@ -1,6 +1,7 @@
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ArrayListTest {
 
@@ -52,7 +53,7 @@ public class ArrayListTest {
     @Test
     public void testRemove() {
         ArrayList al = new ArrayList();
-        
+
         al.add(1);
         al.add(1);
         assertEquals(2, al.size());
@@ -68,7 +69,7 @@ public class ArrayListTest {
         assertEquals(ErrorMessage.NO_ERROR, result.getError());
         assertEquals(1, result.getReturnValue());
         assertEquals(0, al.size());
-        
+
         result = al.remove(2);
         assertTrue(result.hasError());
         assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, result.getError());

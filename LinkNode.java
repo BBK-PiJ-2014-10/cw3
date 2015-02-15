@@ -9,28 +9,28 @@ public class LinkNode {
         previous = previousToSet;
     }
 
-    public void setData(ReturnObjectImpl dataToSet){
-        data = dataToSet;
-    }
-
     public ReturnObjectImpl getData() {
         return data;
     }
 
-    public void setNext(LinkNode nextToSet) {
-        next = nextToSet;
+    public void setData(ReturnObjectImpl dataToSet) {
+        data = dataToSet;
     }
 
     public LinkNode getNext() {
         return next;
     }
 
-    public void setPrevious(LinkNode previousToSet) {
-        previous = previousToSet;
+    public void setNext(LinkNode nextToSet) {
+        next = nextToSet;
     }
 
     public LinkNode getPrevious() {
         return previous;
+    }
+
+    public void setPrevious(LinkNode previousToSet) {
+        previous = previousToSet;
     }
 
 }
