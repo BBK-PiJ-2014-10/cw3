@@ -9,7 +9,7 @@ public class FunctionalLinkedList extends LinkedList implements FunctionalList {
      *         an error if the list is empty.
      */
     public ReturnObjectImpl head() {
-        return head.getData();
+        return new ReturnObjectImpl(head.getData().getReturnValue());
     }
 
     /**

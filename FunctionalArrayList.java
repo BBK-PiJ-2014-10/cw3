@@ -15,7 +15,7 @@ public class FunctionalArrayList extends ArrayList implements FunctionalList{
         if (isEmpty()) {
             returnObj = new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
         } else {
-            returnObj = get(0);
+            returnObj = new ReturnObjectImpl(get(0).getReturnValue());
         }
         return returnObj;
     }
