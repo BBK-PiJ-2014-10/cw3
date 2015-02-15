@@ -7,6 +7,8 @@ public class FunctionalArrayListTest {
     @Test
     public void testHead() {
         FunctionalArrayList fal = new FunctionalArrayList();
+        assertTrue(fal.head().hasError());
+        assertEquals(ErrorMessage.EMPTY_STRUCTURE, fal.head().getError());
         fal.add(1);
         assertEquals(1, fal.size());
         assertTrue(!fal.head().hasError());
@@ -31,14 +33,5 @@ public class FunctionalArrayListTest {
         assertEquals(1, restFal.size());
         assertEquals(2, fal.size());
         assertEquals(1, restFal.get(0).getReturnValue());
-    }
-
-    @Test
-    public void testSetArray() {
-        FunctionalArrayList fal = new FunctionalArrayList();
-        ReturnObjectImpl[] testArray = new ReturnObjectImpl[2];
-        fal.setArray(testArray);
-        assertTrue(fal.array == testArray);
-
     }
 }

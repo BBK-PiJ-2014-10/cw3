@@ -8,6 +8,8 @@ public class FunctionalLinkedListTest {
     @Test
     public void testHead() {
         FunctionalLinkedList fll = new FunctionalLinkedList();
+        assertTrue(fll.head().hasError());
+        assertEquals(ErrorMessage.EMPTY_STRUCTURE, fll.head().getError());
         fll.add(1);
         assertEquals(1, fll.size());
         assertTrue(!fll.head().hasError());
