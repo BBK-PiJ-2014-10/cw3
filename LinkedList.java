@@ -1,8 +1,8 @@
 public class LinkedList implements List {
 
-    private int size = 0;
-    private LinkNode head;
-    private LinkNode tail;
+    public int size = 0;
+    public LinkNode head;
+    public LinkNode tail;
 
     /**
      * Returns true if the list is empty, false otherwise.
