@@ -1,6 +1,5 @@
 public class ReturnObjectImpl implements ReturnObject {
     private Object obj;
-    private int index;
 
     public ReturnObjectImpl (Object obj) {
         this.obj = obj;
