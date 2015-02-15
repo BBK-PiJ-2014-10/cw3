@@ -7,11 +7,11 @@ public class ArrayListTest {
     @Test
     public void testsIsEmpty() {
         ArrayList al = new ArrayList();
-        assertEquals(true , al.isEmpty());
+        assertEquals(true, al.isEmpty());
         al.add(1);
-        assertEquals(false , al.isEmpty());
+        assertEquals(false, al.isEmpty());
         al.remove(0);
-        assertEquals(true , al.isEmpty());
+        assertEquals(true, al.isEmpty());
     }
 
     @Test
