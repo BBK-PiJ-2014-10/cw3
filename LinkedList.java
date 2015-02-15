@@ -2,7 +2,7 @@ public class LinkedList implements List {
 
     private int size = 0;
     private LinkNode head;
-    private LinkNode last;
+    private LinkNode tail;
     /**
      * Returns true if the list is empty, false otherwise.
      *
@@ -32,22 +32,22 @@ public class LinkedList implements List {
      *         encapsulated in a ReturnObject
      */
 
-    public ReturnObject get(int index) {
+    public ReturnObjectImpl get(int index) {
         ReturnObjectImpl returnObj;
         if (isEmpty()) {
             returnObj = new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
         } else if ((index < 0) || (index >= size)) {
             returnObj = new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
         } else {
-            if (index == 1) {
+            if (index == 0) {
                 returnObj = head.getData();
+            } else if (index == (size - 1)) {
+                returnObj = tail.getData();
             } else {
-                if (index > (size / 2)) {
-                    LinkNode link = last;
-                    for (int i = 0; i < index; i++)
-                        link = link.getPointer();
-                    returnObj = link.getData();
-                }
+                LinkNode node = head;
+                for (int i = 0; i < index; i++)
+                    node = node.getNext();
+                returnObj = node.getData();
             }
         }
         return returnObj;
@@ -65,8 +65,35 @@ public class LinkedList implements List {
      * @return the element or an appropriate error message,
      *         encapsulated in a ReturnObject
      */
-    public ReturnObject remove(int index) {
-        return null;
+    public ReturnObjectImpl remove(int index) {
+        ReturnObjectImpl returnObj;
+
+        if ((index < 0) || (index >= size)) {
+            returnObj = new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+        } else {
+            returnObj = get(index);
+            if (index == 0) {
+                returnObj = head.getData();
+                head = head.getNext();
+                head.setPrevious(null);
+            } else if (index == (size - 1)) {
+                returnObj = tail.getData();
+                tail = tail.getPrevious();
+                tail.setNext(null);
+            } else {
+                LinkNode node = head;
+                for (int i = 0; i < index; i++)
+                    node = node.getNext();
+
+                LinkNode nextNode = node.getNext();
+                LinkNode previousNode = node.getPrevious();
+
+                nextNode.setPrevious(previousNode);
+                previousNode.setNext(nextNode);
+            }
+        }
+        size--;
+        return returnObj;
     }
 
     /**
