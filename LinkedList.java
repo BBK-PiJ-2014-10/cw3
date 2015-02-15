@@ -3,6 +3,7 @@ public class LinkedList implements List {
     private int size = 0;
     private LinkNode head;
     private LinkNode tail;
+
     /**
      * Returns true if the list is empty, false otherwise.
      *
@@ -29,7 +30,7 @@ public class LinkedList implements List {
      *
      * @param index the position in the list of the item to be retrieved
      * @return the element or an appropriate error message,
-     *         encapsulated in a ReturnObject
+     * encapsulated in a ReturnObject
      */
 
     public ReturnObjectImpl get(int index) {
@@ -55,15 +56,15 @@ public class LinkedList implements List {
 
     /**
      * Returns the elements at the given position and removes it
-     * from the list. The indeces of elements after the removed
-     * element must be updated accordignly.
+     * from the list. The indices of elements after the removed
+     * element must be updated accordingly.
      *
      * If the index is negative or greater or equal than the size of
      * the list, then an appropriate error must be returned.
      *
      * @param index the position in the list of the item to be retrieved
      * @return the element or an appropriate error message,
-     *         encapsulated in a ReturnObject
+     * encapsulated in a ReturnObject
      */
     public ReturnObjectImpl remove(int index) {
         ReturnObjectImpl returnObj;
@@ -98,8 +99,8 @@ public class LinkedList implements List {
 
     /**
      * Adds an element to the list, inserting it at the given
-     * position. The indeces of elements at and after that position
-     * must be updated accordignly.
+     * position. The indices of elements at and after that position
+     * must be updated accordingly.
      *
      * If the index is negative or greater or equal than the size of
      * the list, then an appropriate error must be returned.
@@ -110,9 +111,9 @@ public class LinkedList implements List {
      *
      * @param index the position at which the item should be inserted in
      *              the list
-     * @param item the value to insert into the list
+     * @param item  the value to insert into the list
      * @return an ReturnObject, empty if the operation is successful
-     *         the item added or containing an appropriate error message
+     * the item added or containing an appropriate error message
      */
     public ReturnObject add(int index, Object item) {
         ReturnObjectImpl returnObj;
@@ -124,14 +125,14 @@ public class LinkedList implements List {
         } else {
             // As per http://moodle.bbk.ac.uk/mod/forumng/discuss.php?d=289
             returnObj = new ReturnObjectImpl(null);
-            ReturnObjectImpl dataToset = new ReturnObjectImpl(item)
+            ReturnObjectImpl dataToSet = new ReturnObjectImpl(item);
             if (index == 0) {
                 LinkNode oldHead = head;
-                head = new LinkNode(dataToset, oldHead, null);
+                head = new LinkNode(dataToSet, oldHead, null);
                 oldHead.setPrevious(head);
             } else if (index == (size - 1)) {
                 LinkNode oldTail = tail;
-                tail = new LinkNode(dataToset, null, oldTail);
+                tail = new LinkNode(dataToSet, null, oldTail);
                 oldTail.setNext(tail);
             } else {
                 LinkNode oldNode = head;
@@ -139,7 +140,7 @@ public class LinkedList implements List {
                     oldNode = oldNode.getNext();
 
                 LinkNode previousNode = oldNode.getPrevious();
-                LinkNode newNode = new LinkNode(dataToset, oldNode, previousNode);
+                LinkNode newNode = new LinkNode(dataToSet, oldNode, previousNode);
 
                 previousNode.setNext(newNode);
                 oldNode.setPrevious(newNode);
@@ -158,9 +159,24 @@ public class LinkedList implements List {
      *
      * @param item the value to insert into the list
      * @return an ReturnObject, empty if the operation is successful
-     *         the item added or containing an appropriate error message
+     * the item added or containing an appropriate error message
      */
     public ReturnObject add(Object item) {
-        return null;
+        ReturnObjectImpl returnObj;
+
+        if (item == null) {
+            returnObj = new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
+        } else {
+            // As per http://moodle.bbk.ac.uk/mod/forumng/discuss.php?d=289
+            returnObj = new ReturnObjectImpl(null);
+            ReturnObjectImpl dataToSet = new ReturnObjectImpl(item);
+
+            LinkNode oldTail = tail;
+            tail = new LinkNode(dataToSet, null, oldTail);
+            oldTail.setNext(tail);
+
+        }
+        size++;
+        return returnObj;
     }
 }
