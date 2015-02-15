@@ -22,10 +22,14 @@ public class FunctionalArrayListTest {
         assertEquals(1, fal.size());
         restFal = fal.rest();
         assertTrue(restFal.isEmpty());
+        assertEquals(1, fal.size());
         fal.add(1);
         assertEquals(2, fal.size());
         restFal = fal.rest();
+        assertEquals(2, fal.size());
         assertTrue(!restFal.isEmpty());
+        assertEquals(1, restFal.size());
+        assertEquals(2, fal.size());
         assertEquals(1, restFal.get(0).getReturnValue());
     }
 
