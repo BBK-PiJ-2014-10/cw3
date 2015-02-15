@@ -115,7 +115,38 @@ public class LinkedList implements List {
      *         the item added or containing an appropriate error message
      */
     public ReturnObject add(int index, Object item) {
-        return null;
+        ReturnObjectImpl returnObj;
+
+        if ((index < 0) || (index >= size)) {
+            returnObj = new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+        } else if (item == null) {
+            returnObj = new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
+        } else {
+            // As per http://moodle.bbk.ac.uk/mod/forumng/discuss.php?d=289
+            returnObj = new ReturnObjectImpl(null);
+            ReturnObjectImpl dataToset = new ReturnObjectImpl(item)
+            if (index == 0) {
+                LinkNode oldHead = head;
+                head = new LinkNode(dataToset, oldHead, null);
+                oldHead.setPrevious(head);
+            } else if (index == (size - 1)) {
+                LinkNode oldTail = tail;
+                tail = new LinkNode(dataToset, null, oldTail);
+                oldTail.setNext(tail);
+            } else {
+                LinkNode oldNode = head;
+                for (int i = 0; i < index; i++)
+                    oldNode = oldNode.getNext();
+
+                LinkNode previousNode = oldNode.getPrevious();
+                LinkNode newNode = new LinkNode(dataToset, oldNode, previousNode);
+
+                previousNode.setNext(newNode);
+                oldNode.setPrevious(newNode);
+            }
+        }
+        size++;
+        return returnObj;
     }
 
     /**
