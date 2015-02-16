@@ -1,41 +1,39 @@
 public class ReturnObjectImpl implements ReturnObject {
-    private Object obj;
+    private Object object;
 
-    public ReturnObjectImpl(Object obj) {
-        this.obj = obj;
+    public ReturnObjectImpl(Object objectToSet) {
+        object = objectToSet;
     }
 
     @Override
     public boolean hasError() {
-        if (this.obj instanceof ErrorMessage) {
-            if (this.obj != ErrorMessage.NO_ERROR) {
+        if (object instanceof ErrorMessage) {
+            if (!object.equals(ErrorMessage.NO_ERROR)) {
                 return true;
             }
         }
-
         return false;
     }
 
     @Override
     public ErrorMessage getError() {
 
-        if (this.hasError()) {
+        if (hasError()) {
             for (ErrorMessage error : ErrorMessage.values()) {
-                if (this.obj == error) {
+                if (object == error) {
                     return error;
                 }
             }
         }
-
         return ErrorMessage.NO_ERROR;
     }
 
     @Override
     public Object getReturnValue() {
-        if (this.hasError()) {
+        if (hasError()) {
             return null;
         } else {
-            return this.obj;
+            return object;
         }
     }
 }

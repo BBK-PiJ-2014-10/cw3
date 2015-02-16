@@ -35,10 +35,11 @@ public class ArrayList implements List {
             returnObj = array[index];
             ReturnObject[] modifiedArray = new ReturnObjectImpl[array.length - 1];
 
+            // Copy all elements, skipping the removed one
             for (int i = 0; i < array.length; i++) {
                 if (i < index) {
                     modifiedArray[i] = array[i];
-                } else if (i != index) {
+                } else if (i > index) {
                     modifiedArray[i - 1] = array[i];
                 }
             }
@@ -60,6 +61,7 @@ public class ArrayList implements List {
             returnObj = new ReturnObjectImpl(null);
             ReturnObject[] modifiedArray = new ReturnObjectImpl[array.length + 1];
 
+            // Copy the array, increase index for the elements after the new one
             for (int i = 0; i < array.length; i++) {
                 if (i < index) {
                     modifiedArray[i] = array[i];
@@ -67,6 +69,7 @@ public class ArrayList implements List {
                     modifiedArray[i + 1] = array[i];
                 }
             }
+            // Add the new element at given index
             modifiedArray[index] = new ReturnObjectImpl(item);
             array = modifiedArray;
         }
@@ -85,9 +88,11 @@ public class ArrayList implements List {
 
             ReturnObject[] modifiedArray = new ReturnObjectImpl[array.length + 1];
 
+            // Copy the array
             for (int i = 0; i < array.length; i++) {
                 modifiedArray[i] = array[i];
             }
+            // Add new element at the end
             modifiedArray[modifiedArray.length - 1] = new ReturnObjectImpl(item);
             array = modifiedArray;
         }
