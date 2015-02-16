@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class ArrayList implements List {
     private ReturnObject[] array = new ReturnObjectImpl[0];
 
@@ -35,11 +33,14 @@ public class ArrayList implements List {
             returnObj = new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
         } else {
             returnObj = array[index];
-            ReturnObject[] modifiedArray = Arrays.copyOf(array, array.length - 1);
+            ReturnObject[] modifiedArray = new ReturnObjectImpl[array.length - 1];
 
-            for (int i = index + 1; i < array.length; i++) {
-                ReturnObject currentObject = array[i];
-                modifiedArray[i - 1] = currentObject;
+            for (int i = 0; i < array.length; i++) {
+                if (i < index) {
+                    modifiedArray[i] = array[i];
+                } else if (i != index) {
+                    modifiedArray[i - 1] = array[i];
+                }
             }
             array = modifiedArray;
         }
@@ -57,11 +58,14 @@ public class ArrayList implements List {
         } else {
             // As per http://moodle.bbk.ac.uk/mod/forumng/discuss.php?d=289
             returnObj = new ReturnObjectImpl(null);
-            ReturnObject[] modifiedArray = Arrays.copyOf(array, array.length + 1);
+            ReturnObject[] modifiedArray = new ReturnObjectImpl[array.length + 1];
 
-            for (int i = index; i < array.length; i++) {
-                ReturnObject currentObject = array[i];
-                modifiedArray[i + 1] = currentObject;
+            for (int i = 0; i < array.length; i++) {
+                if (i < index) {
+                    modifiedArray[i] = array[i];
+                } else if (i > index) {
+                    modifiedArray[i + 1] = array[i];
+                }
             }
             modifiedArray[index] = new ReturnObjectImpl(item);
             array = modifiedArray;
@@ -79,7 +83,11 @@ public class ArrayList implements List {
             // As per http://moodle.bbk.ac.uk/mod/forumng/discuss.php?d=289
             returnObj = new ReturnObjectImpl(null);
 
-            ReturnObject[] modifiedArray = Arrays.copyOf(array, array.length + 1);
+            ReturnObject[] modifiedArray = new ReturnObjectImpl[array.length + 1];
+
+            for (int i = 0; i < array.length; i++) {
+                modifiedArray[i] = array[i];
+            }
             modifiedArray[modifiedArray.length - 1] = new ReturnObjectImpl(item);
             array = modifiedArray;
         }
