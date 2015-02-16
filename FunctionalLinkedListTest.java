@@ -1,13 +1,11 @@
+import junit.framework.TestCase;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-public class FunctionalLinkedListTest {
+public class FunctionalLinkedListTest extends TestCase {
 
     @Test
     public void testHead() {
-        FunctionalLinkedList fll = new FunctionalLinkedList();
+        FunctionalList fll = new FunctionalLinkedList();
         assertTrue(fll.head().hasError());
         assertEquals(ErrorMessage.EMPTY_STRUCTURE, fll.head().getError());
         fll.add(1);
@@ -18,8 +16,8 @@ public class FunctionalLinkedListTest {
 
     @Test
     public void testRest() {
-        FunctionalLinkedList fll = new FunctionalLinkedList();
-        FunctionalLinkedList restFll = fll.rest();
+        FunctionalList fll = new FunctionalLinkedList();
+        FunctionalList restFll = fll.rest();
         assertTrue(restFll.isEmpty());
         fll.add(1);
         assertEquals(1, fll.size());

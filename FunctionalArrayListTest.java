@@ -1,13 +1,11 @@
+import junit.framework.TestCase;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-public class FunctionalArrayListTest {
+public class FunctionalArrayListTest extends TestCase {
 
     @Test
     public void testHead() {
-        FunctionalArrayList fal = new FunctionalArrayList();
+        FunctionalList fal = new FunctionalArrayList();
         assertTrue(fal.head().hasError());
         assertEquals(ErrorMessage.EMPTY_STRUCTURE, fal.head().getError());
         fal.add(1);
@@ -18,8 +16,8 @@ public class FunctionalArrayListTest {
 
     @Test
     public void testRest() {
-        FunctionalArrayList fal = new FunctionalArrayList();
-        FunctionalArrayList restFal = fal.rest();
+        FunctionalList fal = new FunctionalArrayList();
+        FunctionalList restFal = fal.rest();
         assertTrue(restFal.isEmpty());
         fal.add(1);
         assertEquals(1, fal.size());

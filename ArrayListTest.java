@@ -1,13 +1,11 @@
+import junit.framework.TestCase;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-public class ArrayListTest {
+public class ArrayListTest extends TestCase {
 
     @Test
     public void testsIsEmpty() {
-        ArrayList al = new ArrayList();
+        List al = new ArrayList();
         assertEquals(true, al.isEmpty());
         al.add(1);
         assertEquals(false, al.isEmpty());
@@ -17,7 +15,7 @@ public class ArrayListTest {
 
     @Test
     public void testSize() {
-        ArrayList al = new ArrayList();
+        List al = new ArrayList();
         assertEquals(0, al.size());
         al.add(1);
         assertEquals(1, al.size());
@@ -32,7 +30,7 @@ public class ArrayListTest {
 
     @Test
     public void testGet() {
-        ArrayList al = new ArrayList();
+        List al = new ArrayList();
 
         ReturnObject result = al.get(0);
         assertTrue(result.hasError());
@@ -52,7 +50,7 @@ public class ArrayListTest {
 
     @Test
     public void testRemove() {
-        ArrayList al = new ArrayList();
+        List al = new ArrayList();
 
         al.add(1);
         al.add(1);
@@ -77,7 +75,7 @@ public class ArrayListTest {
 
     @Test
     public void testAdd() {
-        ArrayList al = new ArrayList();
+        List al = new ArrayList();
 
         ReturnObject result = al.add(1);
         assertTrue(!result.hasError());
@@ -92,7 +90,7 @@ public class ArrayListTest {
 
     @Test
     public void testAddWithIndex() {
-        ArrayList al = new ArrayList();
+        List al = new ArrayList();
 
         ReturnObject result = al.add(0, 1);
         assertTrue(!result.hasError());
