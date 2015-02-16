@@ -1,19 +1,19 @@
 public class LinkNode {
-    private ReturnObjectImpl data;
+    private ReturnObject data;
     private LinkNode next = null;
     private LinkNode previous = null;
 
-    public LinkNode(ReturnObjectImpl dataToSet, LinkNode nextToSet, LinkNode previousToSet) {
+    public LinkNode(ReturnObject dataToSet, LinkNode nextToSet, LinkNode previousToSet) {
         data = dataToSet;
         next = nextToSet;
         previous = previousToSet;
     }
 
-    public ReturnObjectImpl getData() {
+    public ReturnObject getData() {
         return data;
     }
 
-    public void setData(ReturnObjectImpl dataToSet) {
+    public void setData(ReturnObject dataToSet) {
         data = dataToSet;
     }
 

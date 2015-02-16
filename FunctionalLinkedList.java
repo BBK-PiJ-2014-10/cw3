@@ -1,8 +1,8 @@
 public class FunctionalLinkedList extends LinkedList implements FunctionalList {
 
     @Override
-    public ReturnObjectImpl head() {
-        ReturnObjectImpl returnObj;
+    public ReturnObject head() {
+        ReturnObject returnObj;
         if (isEmpty()) {
             returnObj = new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
         } else {
@@ -12,8 +12,8 @@ public class FunctionalLinkedList extends LinkedList implements FunctionalList {
     }
 
     @Override
-    public FunctionalLinkedList rest() {
-        FunctionalLinkedList restList = new FunctionalLinkedList();
+    public FunctionalList rest() {
+        FunctionalList restList = new FunctionalLinkedList();
         for (int i = 1; i < size(); i++) {
             restList.add(get(i).getReturnValue());
         }

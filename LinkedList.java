@@ -15,8 +15,8 @@ public class LinkedList implements List {
     }
 
     @Override
-    public ReturnObjectImpl get(int index) {
-        ReturnObjectImpl returnObj;
+    public ReturnObject get(int index) {
+        ReturnObject returnObj;
 
         if (isEmpty()) {
             returnObj = new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
@@ -38,8 +38,8 @@ public class LinkedList implements List {
     }
 
     @Override
-    public ReturnObjectImpl remove(int index) {
-        ReturnObjectImpl returnObj;
+    public ReturnObject remove(int index) {
+        ReturnObject returnObj;
 
         if ((index < 0) || (index >= size)) {
             returnObj = new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
@@ -77,7 +77,7 @@ public class LinkedList implements List {
 
     @Override
     public ReturnObject add(int index, Object item) {
-        ReturnObjectImpl returnObj;
+        ReturnObject returnObj;
 
         if ((index < 0) || (index > size)) {
             returnObj = new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
@@ -86,7 +86,7 @@ public class LinkedList implements List {
         } else {
             // As per http://moodle.bbk.ac.uk/mod/forumng/discuss.php?d=289
             returnObj = new ReturnObjectImpl(null);
-            ReturnObjectImpl dataToSet = new ReturnObjectImpl(item);
+            ReturnObject dataToSet = new ReturnObjectImpl(item);
 
             if (isEmpty()) {
                 head = new LinkNode(dataToSet, null, null);
@@ -123,14 +123,14 @@ public class LinkedList implements List {
 
     @Override
     public ReturnObject add(Object item) {
-        ReturnObjectImpl returnObj;
+        ReturnObject returnObj;
 
         if (item == null) {
             returnObj = new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
         } else {
             // As per http://moodle.bbk.ac.uk/mod/forumng/discuss.php?d=289
             returnObj = new ReturnObjectImpl(null);
-            ReturnObjectImpl dataToSet = new ReturnObjectImpl(item);
+            ReturnObject dataToSet = new ReturnObjectImpl(item);
 
             if (isEmpty()) {
                 head = new LinkNode(dataToSet, null, null);

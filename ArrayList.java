@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class ArrayList implements List {
-    private ReturnObjectImpl[] array = new ReturnObjectImpl[0];
+    private ReturnObject[] array = new ReturnObjectImpl[0];
 
     @Override
     public boolean isEmpty() {
@@ -14,8 +14,8 @@ public class ArrayList implements List {
     }
 
     @Override
-    public ReturnObjectImpl get(int index) {
-        ReturnObjectImpl returnObj;
+    public ReturnObject get(int index) {
+        ReturnObject returnObj;
 
         if (isEmpty()) {
             returnObj = new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
@@ -28,17 +28,17 @@ public class ArrayList implements List {
     }
 
     @Override
-    public ReturnObjectImpl remove(int index) {
-        ReturnObjectImpl returnObj;
+    public ReturnObject remove(int index) {
+        ReturnObject returnObj;
 
         if ((index < 0) || (index >= array.length)) {
             returnObj = new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
         } else {
             returnObj = array[index];
-            ReturnObjectImpl[] modifiedArray = Arrays.copyOf(array, array.length - 1);
+            ReturnObject[] modifiedArray = Arrays.copyOf(array, array.length - 1);
 
             for (int i = index + 1; i < array.length; i++) {
-                ReturnObjectImpl currentObject = array[i];
+                ReturnObject currentObject = array[i];
                 modifiedArray[i - 1] = currentObject;
             }
             array = modifiedArray;
@@ -47,8 +47,8 @@ public class ArrayList implements List {
     }
 
     @Override
-    public ReturnObjectImpl add(int index, Object item) {
-        ReturnObjectImpl returnObj;
+    public ReturnObject add(int index, Object item) {
+        ReturnObject returnObj;
 
         if ((index < 0) || (index > array.length)) {
             returnObj = new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
@@ -57,10 +57,10 @@ public class ArrayList implements List {
         } else {
             // As per http://moodle.bbk.ac.uk/mod/forumng/discuss.php?d=289
             returnObj = new ReturnObjectImpl(null);
-            ReturnObjectImpl[] modifiedArray = Arrays.copyOf(array, array.length + 1);
+            ReturnObject[] modifiedArray = Arrays.copyOf(array, array.length + 1);
 
             for (int i = index; i < array.length; i++) {
-                ReturnObjectImpl currentObject = array[i];
+                ReturnObject currentObject = array[i];
                 modifiedArray[i + 1] = currentObject;
             }
             modifiedArray[index] = new ReturnObjectImpl(item);
@@ -79,7 +79,7 @@ public class ArrayList implements List {
             // As per http://moodle.bbk.ac.uk/mod/forumng/discuss.php?d=289
             returnObj = new ReturnObjectImpl(null);
 
-            ReturnObjectImpl[] modifiedArray = Arrays.copyOf(array, array.length + 1);
+            ReturnObject[] modifiedArray = Arrays.copyOf(array, array.length + 1);
             modifiedArray[modifiedArray.length - 1] = new ReturnObjectImpl(item);
             array = modifiedArray;
         }

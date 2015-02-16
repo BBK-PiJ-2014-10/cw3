@@ -1,8 +1,8 @@
 public class FunctionalArrayList extends ArrayList implements FunctionalList {
 
     @Override
-    public ReturnObjectImpl head() {
-        ReturnObjectImpl returnObj;
+    public ReturnObject head() {
+        ReturnObject returnObj;
         if (isEmpty()) {
             returnObj = new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
         } else {
@@ -12,8 +12,8 @@ public class FunctionalArrayList extends ArrayList implements FunctionalList {
     }
 
     @Override
-    public FunctionalArrayList rest() {
-        FunctionalArrayList restList = new FunctionalArrayList();
+    public FunctionalList rest() {
+        FunctionalList restList = new FunctionalArrayList();
         for (int i = 1; i < size(); i++) {
             restList.add(get(i).getReturnValue());
         }
