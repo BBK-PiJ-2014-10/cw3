@@ -99,8 +99,11 @@ public class ArrayListTest extends TestCase {
         // As per http://moodle.bbk.ac.uk/mod/forumng/discuss.php?d=289
         assertEquals(null, result.getReturnValue());
 
-        al.add(1, 1);
-        assertEquals(2, al.size());
+        List nal = new ArrayList();
+        for (int i = 0; i < 1000; i++) {
+            nal.add(i, i);
+            assertEquals(i, nal.get(i).getReturnValue());
+        }
 
         result = al.add(5, 1);
         assertTrue(result.hasError());
