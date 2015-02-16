@@ -12,5 +12,8 @@ public class TestRunner {
         for (Failure failure : result.getFailures()) {
             System.out.println(failure.toString());
         }
+        if (result.wasSuccessful()) {
+            System.out.println("All tests passed.");
+        }
     }
 }
